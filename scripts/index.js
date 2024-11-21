@@ -8,6 +8,7 @@
 
 // @todo: Вывести карточки на страницу
 
+// global constants
 const profilePopup = document.querySelector('.popup_type_edit');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
@@ -94,4 +95,10 @@ function addCardHandler(evt) {
 }
 
 cardForm.addEventListener('submit', addCardHandler);
+
+
+placesList.addEventListener('click', evt => {
+    if (evt.target.classList.contains("card__like-button"))
+        evt.target.classList.toggle('card__like-button_is-active');
+});
 
