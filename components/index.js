@@ -1,14 +1,8 @@
-// @todo: Темплейт карточки
-
-// @todo: DOM узлы
-
-// @todo: Функция создания карточки
-
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу
-
 // global constants
+
+import { initialCards } from './db.js';
+import { openModal, closeModal } from './modal.js';
+
 const profilePopup = document.querySelector('.popup_type_edit');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
@@ -53,13 +47,9 @@ function createCard(name, link) {
     return cardElement;
 }
 
-function openModal(popup) {
-    popup.classList.add('popup_is-opened');
-}
 
-function closeModal(popup) {
-    popup.classList.remove('popup_is-opened');
-}
+
+
 function defaultCardInitialization() {
     for (let i = 0; i < initialCards.length; i++){
         const card = createCard(initialCards[i].name, initialCards[i].link);
