@@ -1,3 +1,5 @@
+// Работа с попапами
+
 function closeByOverlay(event) {
     closeModal(event.target);
 }
@@ -28,11 +30,10 @@ function openModal(popup) {
 
     popup.addEventListener('click', closeByOverlay);
     popupContent.addEventListener('mouseleave', addOverlayListener);
-    popupContent.addEventListener('mouseenter', removeOverlayListener); 
+    popupContent.addEventListener('mouseenter', removeOverlayListener);
 }
 
 function closeModal(popup) {
-    popup.classList.remove('popup_is-opened');
     popup.classList.remove('popup_is-opened');
     const popupContent = popup.querySelector('.popup__content');
     popup.removeEventListener('click', closeByOverlay);

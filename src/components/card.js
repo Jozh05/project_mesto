@@ -1,22 +1,31 @@
-import { openModal } from './modal.js'
+// Создание карточки
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(name, link) {
+function createCard(card, user_id) {
     const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
 
-    cardElement.querySelector('.card__title').textContent = name;
+    cardElement.setAttribute('id', card._id);
+
+    cardElement.querySelector('.card__title').textContent = card.name;
 
     const cardImage = cardElement.querySelector('.card__image');
     const cardDeleteButton = cardElement.querySelector('.card__delete-button');
     const cardLikeButton = cardElement.querySelector('.card__like-button');
+    const cardLikeAmount = cardElement.querySelector('.card__like-amount');
 
-    cardImage.setAttribute('src', link);
-    cardImage.setAttribute('alt', name);
+    if (card.owner._id !== user_id) {
+        cardDeleteButton.remove();
+    }
 
-    cardDeleteButton.addEventListener('click', (event) => event.target.closest('.places__item').remove());
+    cardImage.setAttribute('src', card.link);
+    cardImage.setAttribute('alt', card.name);
 
-    cardLikeButton.addEventListener('click', () => cardLikeButton.classList.toggle('card__like-button_is-active'));
+    if (card.likes.some(item => item._id === user_id)) {
+        cardLikeButton.classList.add('card__like-button_is-active');
+    }
+
+    cardLikeAmount.textContent = card.likes.length;
 
     return cardElement;
 }
